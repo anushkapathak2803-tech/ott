@@ -1,3 +1,5 @@
+const WHATSAPP_NUMBER = "8128127711";
+
 export default function Footer() {
   return (
     <footer className="bg-card border-t border-border">
@@ -26,6 +28,9 @@ export default function Footer() {
             </p>
             <p className="text-sm text-muted-foreground mt-1">
               Email: ott24x7@gmail.com
+            </p>
+            <p className="text-sm text-muted-foreground mt-1">
+              WhatsApp: {WHATSAPP_NUMBER}
             </p>
           </div>
 

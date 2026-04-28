@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { ShoppingCart, Search } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 
+const WHATSAPP_NUMBER = "8128127711";
+
 export default function Header() {
   const { itemCount } = useCart();
 
@@ -26,9 +28,20 @@ export default function Header() {
           </Link>
 
           {/* Right items */}
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-4 lg:gap-6">
+            <a
+              href={`https://wa.me/${WHATSAPP_NUMBER}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:block text-sm font-medium bg-secondary text-background px-4 py-2 rounded-lg hover:bg-secondary/90 transition"
+            >
+              💬 WhatsApp
+            </a>
             <Link to="/auth" className="text-sm font-medium hover:text-primary transition">
-              LOGIN/REGISTER
+              LOGIN
+            </Link>
+            <Link to="/admin-login" className="text-sm font-medium hover:text-primary transition text-accent">
+              ADMIN
             </Link>
             <button className="p-2 hover:bg-muted rounded-lg transition">
               <Search className="w-5 h-5" />

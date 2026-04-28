@@ -6,6 +6,8 @@ import { useCart } from "@/contexts/CartContext";
 import { products } from "@/lib/products";
 import { cn } from "@/lib/utils";
 
+const WHATSAPP_NUMBER = "8128127711";
+
 export default function Shop() {
   const { addItem } = useCart();
   const [priceRange, setPriceRange] = useState([0, 5000]);
@@ -19,7 +21,8 @@ export default function Shop() {
     let filtered = products.filter((p) => {
       const priceMatch = p.price >= priceRange[0] && p.price <= priceRange[1];
       const stockMatch = !inStockOnly || p.inStock;
-      return priceMatch && stockMatch;
+      const categoryMatch = selectedCategory === "all" || p.category === selectedCategory;
+      return priceMatch && stockMatch && categoryMatch;
     });
 
     // Sort
@@ -41,7 +44,7 @@ export default function Shop() {
     }
 
     return filtered;
-  }, [priceRange, inStockOnly, sortBy]);
+  }, [priceRange, inStockOnly, sortBy, selectedCategory]);
 
   return (
     <Layout>
@@ -112,9 +115,10 @@ export default function Shop() {
                     .filter((p) => p.rating && p.rating >= 4)
                     .slice(0, 3)
                     .map((product) => (
-                      <div
+                      <Link
+                        to={`/product/${product.id}`}
                         key={product.id}
-                        className="text-sm bg-muted/30 p-3 rounded-lg hover:bg-muted/50 transition cursor-pointer"
+                        className="text-sm bg-muted/30 p-3 rounded-lg hover:bg-muted/50 transition cursor-pointer block"
                       >
                         <p className="font-semibold line-clamp-2 text-xs mb-2">
                           {product.name}
@@ -127,7 +131,7 @@ export default function Shop() {
                             ₹{product.price}
                           </span>
                         </div>
-                      </div>
+                      </Link>
                     ))}
                 </div>
               </div>
@@ -188,6 +192,35 @@ export default function Shop() {
               </div>
             </div>
 
+            {/* Category Filter */}
+            <div className="mb-8">
+              <h3 className="text-sm font-semibold mb-4">FILTER BY CATEGORY</h3>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  { id: "all", name: "All Products" },
+                  { id: "OTT Store", name: "OTT Store" },
+                  { id: "PREMIUM", name: "Premium" },
+                  { id: "MS OFFICE", name: "MS Office" },
+                  { id: "WINDOWS", name: "Windows" },
+                  { id: "AI TOOLS", name: "AI Tools" },
+                  { id: "OFFICE", name: "Office" },
+                ].map((cat) => (
+                  <button
+                    key={cat.id}
+                    onClick={() => setSelectedCategory(cat.id)}
+                    className={cn(
+                      "px-4 py-2 rounded-lg font-semibold text-sm transition",
+                      selectedCategory === cat.id
+                        ? "bg-primary text-white"
+                        : "bg-muted text-muted-foreground hover:bg-muted/80"
+                    )}
+                  >
+                    {cat.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+
             {/* Products Grid/List */}
             {filteredProducts.length === 0 ? (
               <div className="text-center py-12">
@@ -198,6 +231,7 @@ export default function Shop() {
                   onClick={() => {
                     setPriceRange([0, 5000]);
                     setInStockOnly(false);
+                    setSelectedCategory("all");
                   }}
                   className="text-primary hover:text-primary/80 font-semibold transition"
                 >
@@ -213,7 +247,8 @@ export default function Shop() {
                 )}
               >
                 {filteredProducts.map((product) => (
-                  <div
+                  <Link
+                    to={`/product/${product.id}`}
                     key={product.id}
                     className={cn(
                       "group relative bg-card border border-border rounded-xl overflow-hidden hover:border-primary/50 transition",
@@ -285,7 +320,8 @@ export default function Shop() {
                       )}
 
                       <button
-                        onClick={() => {
+                        onClick={(e) => {
+                          e.preventDefault();
                           if (product.inStock) {
                             addItem(product, 1);
                           }
@@ -301,7 +337,7 @@ export default function Shop() {
                         BUY NOW
                       </button>
                     </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
             )}

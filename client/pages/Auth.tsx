@@ -1,11 +1,16 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Layout from "@/components/Layout";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, Check } from "lucide-react";
 
 export default function Auth() {
+  const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
+  const [loginError, setLoginError] = useState("");
+  const [registerError, setRegisterError] = useState("");
+  const [registerSuccess, setRegisterSuccess] = useState("");
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -17,20 +22,84 @@ export default function Auth() {
     confirmPassword: "",
   });
 
+  const validateEmail = (email: string) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
   const handleLoginSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Login:", formData);
-    // Handle login
+    setLoginError("");
+
+    // Validation
+    if (!formData.email || !formData.password) {
+      setLoginError("Please fill in all fields");
+      return;
+    }
+
+    if (!validateEmail(formData.email)) {
+      setLoginError("Please enter a valid email address");
+      return;
+    }
+
+    if (formData.password.length < 6) {
+      setLoginError("Password must be at least 6 characters");
+      return;
+    }
+
+    // Store user session
+    localStorage.setItem("userEmail", formData.email);
+    localStorage.setItem("userToken", "user_" + Date.now());
+    if (formData.rememberMe) {
+      localStorage.setItem("rememberMe", "true");
+    }
+
+    // Redirect to shop
+    navigate("/shop");
   };
 
   const handleRegisterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (registerData.password !== registerData.confirmPassword) {
-      alert("Passwords do not match!");
+    setRegisterError("");
+    setRegisterSuccess("");
+
+    // Validation
+    if (!registerData.email || !registerData.password || !registerData.confirmPassword) {
+      setRegisterError("Please fill in all fields");
       return;
     }
-    console.log("Register:", registerData);
-    // Handle register
+
+    if (!validateEmail(registerData.email)) {
+      setRegisterError("Please enter a valid email address");
+      return;
+    }
+
+    if (registerData.password.length < 6) {
+      setRegisterError("Password must be at least 6 characters");
+      return;
+    }
+
+    if (registerData.password !== registerData.confirmPassword) {
+      setRegisterError("Passwords do not match!");
+      return;
+    }
+
+    // Store user in localStorage (in production, this would be a backend call)
+    const users = JSON.parse(localStorage.getItem("users") || "[]");
+    if (users.find((u: any) => u.email === registerData.email)) {
+      setRegisterError("Email already registered");
+      return;
+    }
+
+    users.push({ email: registerData.email, password: registerData.password });
+    localStorage.setItem("users", JSON.stringify(users));
+
+    setRegisterSuccess("Account created successfully! Redirecting to login...");
+    setTimeout(() => {
+      setIsLogin(true);
+      setRegisterData({ email: "", password: "", confirmPassword: "" });
+      setRegisterSuccess("");
+      setFormData({ email: registerData.email, password: "", rememberMe: false });
+    }, 2000);
   };
 
   return (
@@ -53,6 +122,12 @@ export default function Auth() {
               <h2 className="text-2xl font-bold mb-8">LOGIN</h2>
 
               <form onSubmit={handleLoginSubmit} className="space-y-6">
+                {loginError && (
+                  <div className="bg-red-500/20 border border-red-500/50 rounded-lg p-3 text-red-400 text-sm">
+                    {loginError}
+                  </div>
+                )}
+
                 <div>
                   <label className="block text-sm font-semibold mb-3">
                     Username or email address
@@ -147,6 +222,18 @@ export default function Auth() {
               </p>
 
               <form onSubmit={handleRegisterSubmit} className="space-y-6">
+                {registerError && (
+                  <div className="bg-red-500/20 border border-red-500/50 rounded-lg p-3 text-red-400 text-sm">
+                    {registerError}
+                  </div>
+                )}
+
+                {registerSuccess && (
+                  <div className="bg-green-500/20 border border-green-500/50 rounded-lg p-3 text-green-400 text-sm flex items-center gap-2">
+                    <Check className="w-4 h-4" />
+                    {registerSuccess}
+                  </div>
+                )}
                 <div>
                   <label className="block text-sm font-semibold mb-3">
                     Email address

@@ -6,13 +6,15 @@ import { useCart } from "@/contexts/CartContext";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 
+const WHATSAPP_NUMBER = "8128127711";
+
 export default function Index() {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const { addItem } = useCart();
 
-  const filteredProducts = selectedCategory === "all"
-    ? products
+  const filteredProducts = selectedCategory === "all" 
+    ? products 
     : products.filter(p => p.category.toLowerCase().includes(selectedCategory));
 
   return (
@@ -23,12 +25,12 @@ export default function Index() {
           <div className="absolute top-20 right-0 w-96 h-96 bg-primary rounded-full mix-blend-multiply filter blur-3xl"></div>
           <div className="absolute -bottom-8 left-20 w-96 h-96 bg-accent rounded-full mix-blend-multiply filter blur-3xl"></div>
         </div>
-
+        
         <div className="relative max-w-7xl mx-auto px-4 py-20 text-center">
           <div className="inline-block mb-4 px-4 py-2 rounded-full border border-primary/50 bg-primary/10">
             <span className="text-xs font-semibold text-primary">⚡ INSTANT DIGITAL DELIVERY - WORLDWIDE</span>
           </div>
-
+          
           <h1 className="text-5xl md:text-6xl font-black mb-6 leading-tight">
             <span className="text-white">Premium Digital</span>
             <br />
@@ -36,15 +38,15 @@ export default function Index() {
               Subscriptions & Licenses
             </span>
           </h1>
-
+          
           <p className="text-lg md:text-xl text-muted-foreground mb-4 max-w-2xl mx-auto">
             OTT Plans • MS Office • Windows Keys • Adobe • AI Tools • Antivirus • SMM Services
           </p>
-
+          
           <p className="text-md text-muted-foreground mb-8 max-w-2xl mx-auto">
             at India's lowest prices, delivered instantly.
           </p>
-
+          
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <Link
               to="/shop"
@@ -53,13 +55,9 @@ export default function Index() {
               BROWSE ALL PRODUCTS
             </Link>
             <a
-              href="#"
-              className="px-8 py-4 border border-primary text-primary font-bold rounded-lg hover:bg-primary/10 transition"
-            >
-              OTT STORE
-            </a>
-            <a
-              href="https://wa.me"
+              href={`https://wa.me/${WHATSAPP_NUMBER}`}
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-8 py-4 bg-secondary text-background font-bold rounded-lg hover:bg-secondary/90 transition"
             >
               WHATSAPP US
@@ -129,7 +127,8 @@ export default function Index() {
             : "space-y-4"
         )}>
           {filteredProducts.slice(0, 8).map((product) => (
-            <div
+            <Link
+              to={`/product/${product.id}`}
               key={product.id}
               className={cn(
                 "group relative bg-card border border-border rounded-xl overflow-hidden hover:border-primary/50 transition",
@@ -190,7 +189,8 @@ export default function Index() {
                 )}
 
                 <button
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.preventDefault();
                     if (product.inStock) {
                       addItem(product, 1);
                     }
@@ -206,7 +206,7 @@ export default function Index() {
                   BUY NOW
                 </button>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 
@@ -293,7 +293,9 @@ export default function Index() {
         <div className="mt-12 bg-secondary/20 border border-secondary/50 rounded-lg p-8 text-center">
           <p className="text-muted-foreground mb-4">Still have questions? Our team replies within minutes on WhatsApp 24/7 🚀</p>
           <a
-            href="https://wa.me"
+            href={`https://wa.me/${WHATSAPP_NUMBER}`}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-block px-8 py-3 bg-secondary text-background font-bold rounded-lg hover:bg-secondary/90 transition"
           >
             💬 Chat on WhatsApp
