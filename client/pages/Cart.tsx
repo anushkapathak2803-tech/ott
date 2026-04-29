@@ -49,7 +49,7 @@ export default function Cart() {
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Cart Items */}
           <div className="lg:col-span-2">
-            <div className="bg-card border border-border rounded-lg p-6">
+            <div className="glass-card p-6">
               {items.map((item) => (
                 <div
                   key={item.product.id}
@@ -150,7 +150,7 @@ export default function Cart() {
 
           {/* Cart Summary */}
           <div className="lg:col-span-1">
-            <div className="bg-card border border-border rounded-lg p-6 sticky top-20">
+            <div className="glass-card p-6 sticky top-20">
               <h2 className="text-xl font-bold mb-6">Order Summary</h2>
 
               <div className="space-y-4 mb-6 pb-6 border-b border-border">

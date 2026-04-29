@@ -233,7 +233,7 @@ export default function ProductDetail() {
         </div>
 
         {/* Features Section */}
-        <div className="bg-card border border-border rounded-xl p-8 mb-16">
+        <div className="glass-card p-8 mb-16">
           <h2 className="text-2xl font-bold mb-6">Features Included</h2>
           <div className="grid md:grid-cols-2 gap-6">
             {[
@@ -253,7 +253,7 @@ export default function ProductDetail() {
         </div>
 
         {/* Payment Methods */}
-        <div className="bg-card border border-border rounded-xl p-8 mb-16">
+        <div className="glass-card p-8 mb-16">
           <h2 className="text-2xl font-bold mb-6">Guaranteed Safe Checkout</h2>
           <div className="grid grid-cols-4 md:grid-cols-8 gap-4">
             {paymentMethods.map((method, idx) => (
@@ -277,7 +277,7 @@ export default function ProductDetail() {
                 <Link
                   key={p.id}
                   to={`/product/${p.id}`}
-                  className="bg-card border border-border rounded-xl overflow-hidden hover:border-primary/50 transition group"
+                  className="glass-card overflow-hidden hover:bg-white/40 transition group"
                 >
                   <div className="relative bg-muted h-48 overflow-hidden">
                     <img

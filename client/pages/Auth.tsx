@@ -118,7 +118,7 @@ export default function Auth() {
 
           <div className="grid md:grid-cols-2 gap-8">
             {/* Login Section */}
-            <div className="bg-card border border-border rounded-xl p-8">
+            <div className="glass-card p-8">
               <h2 className="text-2xl font-bold mb-8">LOGIN</h2>
 
               <form onSubmit={handleLoginSubmit} className="space-y-6">
@@ -214,7 +214,7 @@ export default function Auth() {
             </div>
 
             {/* Register Section */}
-            <div className="bg-card border border-border rounded-xl p-8">
+            <div className="glass-card p-8">
               <h2 className="text-2xl font-bold mb-4">REGISTER</h2>
 
               <p className="text-sm text-muted-foreground mb-8">

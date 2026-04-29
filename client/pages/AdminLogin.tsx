@@ -32,7 +32,7 @@ export default function AdminLogin() {
     <Layout>
       <div className="min-h-[600px] bg-gradient-to-b from-primary/5 to-background py-12 px-4">
         <div className="max-w-md mx-auto">
-          <div className="bg-card border border-border rounded-xl p-8">
+          <div className="glass-card p-8">
             <div className="text-center mb-8">
               <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center mx-auto mb-4">
                 <svg

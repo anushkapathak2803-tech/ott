@@ -129,8 +129,8 @@ export default function AdminDashboard() {
         {/* Product Form Modal */}
         {isFormOpen && (
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-            <div className="bg-card border border-border rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-              <div className="sticky top-0 bg-card border-b border-border p-6 flex items-center justify-between">
+            <div className="glass-card max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+              <div className="sticky top-0 glass-card border-b p-6 flex items-center justify-between">
                 <h2 className="text-2xl font-bold">
                   {editingId ? "Edit Product" : "Add New Product"}
                 </h2>
@@ -291,7 +291,7 @@ export default function AdminDashboard() {
         )}
 
         {/* Products Table */}
-        <div className="bg-card border border-border rounded-xl overflow-hidden">
+        <div className="glass-card overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
@@ -347,17 +347,17 @@ export default function AdminDashboard() {
 
         {/* Stats */}
         <div className="grid md:grid-cols-3 gap-6 mt-12">
-          <div className="bg-card border border-border rounded-xl p-6">
+          <div className="glass-card p-6">
             <p className="text-muted-foreground text-sm mb-2">Total Products</p>
             <p className="text-3xl font-bold">{products.length}</p>
           </div>
-          <div className="bg-card border border-border rounded-xl p-6">
+          <div className="glass-card p-6">
             <p className="text-muted-foreground text-sm mb-2">In Stock</p>
             <p className="text-3xl font-bold text-green-400">
               {products.filter((p) => p.inStock).length}
             </p>
           </div>
-          <div className="bg-card border border-border rounded-xl p-6">
+          <div className="glass-card p-6">
             <p className="text-muted-foreground text-sm mb-2">Out of Stock</p>
             <p className="text-3xl font-bold text-red-400">
               {products.filter((p) => !p.inStock).length}

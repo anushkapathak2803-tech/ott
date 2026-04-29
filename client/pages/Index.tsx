@@ -131,7 +131,7 @@ export default function Index() {
               to={`/product/${product.id}`}
               key={product.id}
               className={cn(
-                "group relative bg-card border border-border rounded-xl overflow-hidden hover:border-primary/50 transition",
+                "group relative glass-card overflow-hidden hover:bg-white/40 transition",
                 viewMode === "list" && "flex gap-4 p-4"
               )}
             >

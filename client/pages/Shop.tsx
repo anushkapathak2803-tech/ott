@@ -63,7 +63,7 @@ export default function Shop() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Sidebar Filters */}
           <div className="md:col-span-1">
-            <div className="bg-card border border-border rounded-lg p-6 sticky top-20">
+            <div className="glass-card p-6 sticky top-20">
               {/* Price Filter */}
               <div className="mb-8">
                 <h3 className="font-bold text-lg mb-4">Filter by Price</h3>
@@ -251,7 +251,7 @@ export default function Shop() {
                     to={`/product/${product.id}`}
                     key={product.id}
                     className={cn(
-                      "group relative bg-card border border-border rounded-xl overflow-hidden hover:border-primary/50 transition",
+                      "group relative glass-card overflow-hidden hover:bg-white/40 transition",
                       viewMode === "list" && "flex gap-4 p-4"
                     )}
                   >
