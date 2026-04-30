@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
 import { ShoppingCart, Search } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
+import { useSearch } from "@/contexts/SearchContext";
 
 const WHATSAPP_NUMBER = "8128127711";
 
 export default function Header() {
   const { itemCount } = useCart();
+  const { setIsOpen } = useSearch();
 
   return (
     <header className="glass sticky top-0 z-40">
@@ -43,7 +45,10 @@ export default function Header() {
             <Link to="/admin-login" className="text-sm font-medium hover:text-primary transition text-accent">
               ADMIN
             </Link>
-            <button className="p-2 hover:bg-muted rounded-lg transition">
+            <button
+              onClick={() => setIsOpen(true)}
+              className="p-2 hover:bg-muted rounded-lg transition"
+            >
               <Search className="w-5 h-5" />
             </button>
             <Link
