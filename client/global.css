@@ -12,33 +12,33 @@
    * A different format will require also updating the theme in tailwind.config.ts.
   */
   :root {
-    --background: 39 40% 94%;
-    --foreground: 20 20% 20%;
+    --background: 260 40% 15%;
+    --foreground: 0 0% 100%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 20 20% 20%;
+    --card: 260 40% 20%;
+    --card-foreground: 0 0% 100%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 20 20% 20%;
+    --popover: 260 40% 20%;
+    --popover-foreground: 0 0% 100%;
 
-    --primary: 39 77% 49%;
+    --primary: 290 100% 60%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 45%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 200 100% 60%;
+    --secondary-foreground: 0 0% 0%;
 
-    --muted: 39 40% 85%;
-    --muted-foreground: 20 20% 40%;
+    --muted: 260 30% 30%;
+    --muted-foreground: 0 0% 80%;
 
-    --accent: 39 90% 60%;
+    --accent: 320 100% 65%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 39 40% 88%;
-    --input: 0 0% 100%;
-    --ring: 39 77% 49%;
+    --border: 260 30% 35%;
+    --input: 260 40% 25%;
+    --ring: 290 100% 60%;
 
     --radius: 1rem;
 
@@ -60,41 +60,41 @@
   }
 
   .dark {
-    --background: 39 40% 94%;
-    --foreground: 20 20% 20%;
+    --background: 260 40% 15%;
+    --foreground: 0 0% 100%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 20 20% 20%;
+    --card: 260 40% 20%;
+    --card-foreground: 0 0% 100%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 20 20% 20%;
+    --popover: 260 40% 20%;
+    --popover-foreground: 0 0% 100%;
 
-    --primary: 39 77% 49%;
+    --primary: 290 100% 60%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 45%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 200 100% 60%;
+    --secondary-foreground: 0 0% 0%;
 
-    --muted: 39 40% 85%;
-    --muted-foreground: 20 20% 40%;
+    --muted: 260 30% 30%;
+    --muted-foreground: 0 0% 80%;
 
-    --accent: 39 90% 60%;
+    --accent: 320 100% 65%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 39 40% 88%;
-    --input: 0 0% 100%;
-    --ring: 39 77% 49%;
-    --sidebar-background: 39 40% 94%;
-    --sidebar-foreground: 20 20% 20%;
-    --sidebar-primary: 39 77% 49%;
+    --border: 260 30% 35%;
+    --input: 260 40% 25%;
+    --ring: 290 100% 60%;
+    --sidebar-background: 260 40% 15%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 290 100% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 39 90% 60%;
+    --sidebar-accent: 320 100% 65%;
     --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 39 40% 88%;
-    --sidebar-ring: 39 77% 49%;
+    --sidebar-border: 260 30% 35%;
+    --sidebar-ring: 290 100% 60%;
   }
 }
 
@@ -121,18 +121,26 @@
 
 @layer components {
   .glass {
-    @apply backdrop-blur-md bg-white/40 border border-white/60;
+    @apply backdrop-blur-md bg-white/10 border border-white/30;
   }
 
   .glass-dark {
-    @apply backdrop-blur-md bg-white/5 border border-white/20;
+    @apply backdrop-blur-md bg-black/20 border border-white/20;
   }
 
   .glass-card {
-    @apply backdrop-blur-lg bg-white/30 border border-white/40 rounded-2xl;
+    @apply backdrop-blur-lg bg-white/15 border border-white/30 rounded-2xl;
   }
 
   .glass-button {
-    @apply backdrop-blur-md bg-white/40 border border-white/60 hover:bg-white/50 transition-all;
+    @apply backdrop-blur-md bg-white/20 border border-white/30 hover:bg-white/30 transition-all;
+  }
+
+  .gradient-primary {
+    @apply bg-gradient-to-r from-primary via-accent to-secondary;
+  }
+
+  .gradient-purple {
+    @apply bg-gradient-to-r from-purple-600 via-pink-500 to-blue-500;
   }
 }
