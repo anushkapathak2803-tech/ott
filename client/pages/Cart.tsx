@@ -173,9 +173,12 @@ export default function Cart() {
                 <span className="text-primary">₹{total}</span>
               </div>
 
-              <button className="w-full bg-primary text-white font-bold py-3 rounded-lg hover:bg-primary/90 transition mb-3">
+              <Link
+                to="/checkout"
+                className="w-full block text-center bg-gradient-to-r from-primary to-accent text-white font-bold py-3 rounded-lg hover:opacity-90 transition mb-3"
+              >
                 PROCEED TO CHECKOUT
-              </button>
+              </Link>
 
               <a
                 href="https://wa.me"

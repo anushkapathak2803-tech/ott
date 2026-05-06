@@ -27,14 +27,14 @@ export default function Index() {
         </div>
         
         <div className="relative max-w-7xl mx-auto px-4 py-20 text-center">
-          <div className="inline-block mb-4 px-4 py-2 rounded-full border border-primary/50 bg-primary/10">
-            <span className="text-xs font-semibold text-primary">⚡ INSTANT DIGITAL DELIVERY - WORLDWIDE</span>
+          <div className="inline-block mb-4 px-4 py-2 rounded-full bg-gradient-to-r from-primary/30 to-accent/30 border border-primary/50">
+            <span className="text-xs font-semibold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">⚡ INSTANT DIGITAL DELIVERY - WORLDWIDE</span>
           </div>
           
           <h1 className="text-5xl md:text-6xl font-black mb-6 leading-tight">
             <span className="text-white">Premium Digital</span>
             <br />
-            <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-primary via-accent to-pink-500 bg-clip-text text-transparent">
               Subscriptions & Licenses
             </span>
           </h1>
@@ -50,7 +50,7 @@ export default function Index() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <Link
               to="/shop"
-              className="px-8 py-4 bg-primary text-white font-bold rounded-lg hover:bg-primary/90 transition transform hover:scale-105"
+              className="px-8 py-4 bg-gradient-to-r from-primary to-accent text-white font-bold rounded-lg hover:opacity-90 transition transform hover:scale-105"
             >
               BROWSE ALL PRODUCTS
             </Link>
@@ -58,7 +58,7 @@ export default function Index() {
               href={`https://wa.me/${WHATSAPP_NUMBER}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-4 bg-secondary text-background font-bold rounded-lg hover:bg-secondary/90 transition"
+              className="px-8 py-4 bg-secondary text-white font-bold rounded-lg hover:opacity-90 transition"
             >
               WHATSAPP US
             </a>
@@ -339,7 +339,7 @@ export default function Index() {
           <h2 className="text-4xl font-bold mb-4">
             Start Saving on
             <br />
-            <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-primary via-accent to-pink-500 bg-clip-text text-transparent">
               Premium Subscriptions Today
             </span>
           </h2>
@@ -348,7 +348,7 @@ export default function Index() {
           </p>
           <Link
             to="/shop"
-            className="inline-block px-8 py-4 bg-primary text-white font-bold rounded-lg hover:bg-primary/90 transition"
+            className="inline-block px-8 py-4 bg-gradient-to-r from-primary to-accent text-white font-bold rounded-lg hover:opacity-90 transition"
           >
             Shop Now
           </Link>

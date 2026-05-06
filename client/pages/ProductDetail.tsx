@@ -197,9 +197,12 @@ export default function ProductDetail() {
               >
                 ADD TO CART
               </button>
-              <button className="w-full bg-primary text-white font-bold py-4 rounded-lg hover:bg-primary/90 transition text-lg">
+              <Link
+                to="/checkout"
+                className="w-full block text-center bg-gradient-to-r from-primary to-accent text-white font-bold py-4 rounded-lg hover:opacity-90 transition text-lg"
+              >
                 BUY NOW
-              </button>
+              </Link>
               <div className="flex gap-3">
                 <button className="flex-1 bg-muted text-white font-bold py-3 rounded-lg hover:bg-muted/80 transition flex items-center justify-center gap-2">
                   <Share2 className="w-5 h-5" />
